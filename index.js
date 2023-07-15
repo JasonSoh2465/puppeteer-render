@@ -42,9 +42,9 @@ app.get("/scrape", (req, res) => {
 
 app.get("/", (req, res) => {
     res.send("Render Puppeteer server is up and running!");
-    run();
+    
 });
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  run();
 });
