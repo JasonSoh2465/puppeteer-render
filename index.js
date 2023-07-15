@@ -3,23 +3,6 @@ const pptr = require('puppeteer');
 require('dotenv').config();
 
 const app = express();
-
-const PORT = process.env.PORT || 4000;
-
-app.get("/scrape", (req, res) => {
-  scrapeLogic(res);
-});
-
-app.get("/", (req, res) => {
-  setInterval(() => {
-    res.send("Render Puppeteer server is up and running!");
-  }, 86400)
-});
-
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
-
 async function run() {
   const browser = await pptr.launch({
     args: [
@@ -51,4 +34,19 @@ async function run() {
   await browser.close();
 }
 
-run();
+const PORT = process.env.PORT || 4000;
+
+app.get("/scrape", (req, res) => {
+  scrapeLogic(res);
+});
+
+app.get("/", (req, res) => {
+  setInterval(() => {
+    res.send("Render Puppeteer server is up and running!");
+    run();
+  }, 86400)
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
