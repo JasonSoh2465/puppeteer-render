@@ -41,10 +41,8 @@ app.get("/scrape", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  setInterval(() => {
     res.send("Render Puppeteer server is up and running!");
     run();
-  }, 86400)
 });
 
 app.listen(PORT, () => {
