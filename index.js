@@ -31,7 +31,7 @@ async function run() {
     executablePath:
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
-        : puppeteer.executablePath(),
+        : pptr.executablePath(),
     headless: 'new'
   });
   const [page] = await browser.pages();
@@ -44,7 +44,7 @@ async function run() {
   await page.reload();
   const textarea = await page.waitForXPath('//*[@id="pepBio"]');
   await textarea.click({ clickCount: 3 });
-  await textarea.type(new Date().toString());
+  await textarea.type(new Date().toString() + 'mew');
   const button = await page.$('div.x1i10hfl:nth-child(1)[role="button"]');
   await button.click();
   console.log(`Bio updated to ${new Date().toString()}`);
