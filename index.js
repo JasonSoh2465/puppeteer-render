@@ -38,10 +38,7 @@ async function run() {
 const PORT = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
-    setInterval(async () => {
-      res.send('Starting up process...');
-      res.send(await run());
-    }, 6000);
+    run();
 });
 
 app.listen(PORT, () => {
