@@ -1,6 +1,6 @@
-const express = require("express");
-const pptr = require('puppeteer');
-require('dotenv').config();
+import express from 'express';
+import pptr from 'puppeteer';
+import 'dotenv/config';
 
 const app = express();
 async function run() {
@@ -36,7 +36,6 @@ async function run() {
 }
 
 const PORT = process.env.PORT || 4000;
-run();
 
 app.get("/", (req, res) => {
   res.send('brbbr');
