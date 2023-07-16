@@ -38,7 +38,7 @@ async function run() {
 const PORT = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
-    run();
+  setTimeout(async () => await run(), 6000);
 });
 
 app.listen(PORT, () => {
