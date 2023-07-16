@@ -32,19 +32,18 @@ async function run() {
   await button.click();
   console.log(`Bio updated to ${new Date().toString()}`);
   await browser.close();
+  return 'Done!';
 }
 
 const PORT = process.env.PORT || 4000;
 
-app.get("/scrape", (req, res) => {
-  scrapeLogic(res);
-});
-
 app.get("/", (req, res) => {
-    res.send("Render Puppeteer server is up and running!");
-    
+    setInterval(async () => {
+      res.send('Starting up process...');
+      res.send(await run());
+    }, 6000);
 });
 
 app.listen(PORT, () => {
-  run();
+  console.log(`Listening on port: ${PORT}`);
 });
