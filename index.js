@@ -38,8 +38,19 @@ async function run() {
 const PORT = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
-  res.send('brbbr');
+  let totalMins = 0;
+  setInterval(() => {
+    totalMins += 1;
+    res.send('total mins: ' + totalMins);
+  }, 60000);
 });
+
+app.get('/run', (req, res) => {
+  setInterval(async () => {
+    await run();
+    console.log('done');
+  }, 60000);
+})
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
